@@ -20,6 +20,11 @@ public class GroundPlacementController : MonoBehaviour
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             ReleaseIfClicked();
+            // right-click mouse to destroy current selection ///////////////////////////////////////
+            if(Input.GetMouseButtonDown(1))
+            {
+                DestroyCurrentPrefab();
+            }
         }
     }
 
@@ -29,25 +34,37 @@ public class GroundPlacementController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha0 + 1 + i))
             {
-                if (PressedKeyOfCurrentPrefab(i))
-                {
-                    Destroy(currentPlaceableObject);
-                    currentPrefabIndex = -1;
-                }
-                else
-                {
-                    if (currentPlaceableObject != null)
-                    {
-                        Destroy(currentPlaceableObject);
-                    }
-
-                    currentPlaceableObject = Instantiate(placeableObjectPrefabs[i]);
-                    currentPrefabIndex = i;
-                }
+                // Call function //////////////////////////////////////////////////////////////////////
+                PlacePrefab(i);
 
                 break;
             }
         }
+    }
+
+    public void PlacePrefab(int i)
+    {
+        if (PressedKeyOfCurrentPrefab(i))
+        {
+            // call function //////////////////////////////////////////////////////
+            DestroyCurrentPrefab();
+            currentPrefabIndex = -1;
+        }
+        else
+        {
+            if (currentPlaceableObject != null)
+            {
+                Destroy(currentPlaceableObject);
+            }
+
+            currentPlaceableObject = Instantiate(placeableObjectPrefabs[i]);
+            currentPrefabIndex = i;
+        }
+    }
+
+    public void DestroyCurrentPrefab()
+    {
+        Destroy(currentPlaceableObject);
     }
 
     private bool PressedKeyOfCurrentPrefab(int i)

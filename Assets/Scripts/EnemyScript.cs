@@ -17,15 +17,19 @@ public class EnemyScript : MonoBehaviour
     public static int enemyBreaches = 0;
 
     // create a transform variable for the enemy position
-    private Transform target;
+    public Transform target;
     // set waypoint index variable
     private int waypointIndex = 0;
+
+    //public Text enemyDebug;
 
     // Start is called before the first frame update
     void OnEnable()
     {
         // set the target transform to 1st position of static waypoints array
         target = WaypointsScript.points[0];
+        // reset waypoint index
+        waypointIndex = 0;
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class EnemyScript : MonoBehaviour
         {
             GetNextWaypoint();
         }
+        //enemyDebug.text = waypointIndex.ToString();
     }
 
     void GetNextWaypoint()
@@ -50,6 +55,10 @@ public class EnemyScript : MonoBehaviour
         {
             // destroy object at last waypoint
             //Destroy(gameObject);
+
+            // set the target transform to 1st position of static waypoints array
+            waypointIndex = 0;
+
             gameObject.SetActive(false);
             WaveSpawner2.enemiesAlive--;
             enemyBreaches++;

@@ -565,7 +565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6202590171516758168
 Transform:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
   firePoint: {fileID: 2629884403030425535}
   range: 15
   rotateSpeed: 10
-  fireRate: 1
+  fireRate: 2
   shotCooldown: 0
 --- !u!1 &6202590171549802206
 GameObject:
