@@ -59,7 +59,7 @@ public class EnemyScript : MonoBehaviour
             // set the target transform to 1st position of static waypoints array
             waypointIndex = 0;
 
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);/////////////////////////////////////////
             WaveSpawner2.enemiesAlive--;
             enemyBreaches++;
             // wait til game object is destroyed before continuing

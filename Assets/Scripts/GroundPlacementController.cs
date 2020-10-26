@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GroundPlacementController : MonoBehaviour
 {
@@ -86,13 +87,17 @@ public class GroundPlacementController : MonoBehaviour
 
     private void RotateFromMouseWheel()
     {
-        Debug.Log(Input.mouseScrollDelta);
+        //Debug.Log(Input.mouseScrollDelta);
         mouseWheelRotation += Input.mouseScrollDelta.y;
         currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
     }
 
     private void ReleaseIfClicked()
     {
+        // check if pointer over UI element
+        if (EventSystem.current.IsPointerOverGameObject()) ////////////////////////
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             currentPlaceableObject = null;

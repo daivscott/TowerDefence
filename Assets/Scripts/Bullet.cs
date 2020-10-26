@@ -39,9 +39,10 @@ public class Bullet : MonoBehaviour
 
     void HitTarget()
     {
-        // stop inactive turrets being shot ////////////////////////////////////
-        if(!target.activeSelf)
+        // if target not active anymore
+        if (!target.activeSelf)
         {
+            // deactivate the bullet
             gameObject.SetActive(false);
             return;
         }
@@ -50,7 +51,7 @@ public class Bullet : MonoBehaviour
         WaveSpawner2.enemiesAlive--;
         enemyDeaths++;
         //Destroy(target.gameObject);
-        target.gameObject.SetActive(false);
+        target.gameObject.SetActive(false);//////////////////////
         //Turret2.targetLocked = false;
         //EnemyScript.targeted = false;
         gameObject.SetActive(false);

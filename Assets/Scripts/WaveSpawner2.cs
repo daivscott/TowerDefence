@@ -81,6 +81,7 @@ public class WaveSpawner2 : MonoBehaviour
         // instantciate an enemy prefab
         //Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         GameObject spawnedObject = ObjectPooler.SharedInstance.GetPooledObject("Enemy");
+        // check object exists
         if (spawnedObject != null)
         {
             spawnedObject.transform.position = spawnPoint.position;
