@@ -46,13 +46,13 @@ public class TurretScript : MonoBehaviour
             if(distanceToTarget <= range && target.activeSelf) /////// added AND to stop firing at inactive tower 
             {
                 // get direction to target 
-                Vector3 dir = target.gameObject.transform.position - transform.position;
-                // create quaternion lookrotation variable and set to to target
-                Quaternion lookRotation = Quaternion.LookRotation(dir);
-                // convert rotataion to euler angle using lerp to turn Gun at set speed
+                Vector3 directionToTarget = target.gameObject.transform.position - gun.transform.position;
+                // create quaternion lookrotation variable and set to to target 
+                Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+                // convert rotataion to euler angles and use lerp to turn Gun at set speed
                 Vector3 rotation = Quaternion.Lerp(gun.gameObject.transform.rotation, lookRotation, Time.deltaTime * rotateSpeed).eulerAngles;
                 // set Gun part of turret to converted rotation
-                gun.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f); //////////
+                gun.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z); //////////
 
                 // only shoot if shotCoolDown less than or equal to 0
                 if (shotCooldown <= 0f)// && target.gameObject.activeSelf == true)

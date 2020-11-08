@@ -28,6 +28,15 @@ public class WaveSpawner2 : MonoBehaviour
     // wave index identifier
     public static int waveIndex = 0;
 
+    public int waveIndexStartPosition = 0;
+
+    public bool spawnwerActive= false;
+
+    void Start()
+    {
+       
+    }
+
     void Update()
     {
         // if no enemies left dont run the remaining update code
@@ -35,7 +44,13 @@ public class WaveSpawner2 : MonoBehaviour
         {
             return;
         }
-         
+
+        // if spawner is active dont run the remaining update code  ////////////// stops wave spawns whilest already spawning
+        if (spawnwerActive)
+        {
+            return;
+        } 
+
         // if timer reaches 0
         if(countdown <= 0f)
         {
@@ -67,12 +82,32 @@ public class WaveSpawner2 : MonoBehaviour
         // increment the wave index
         waveIndex++;
 
+        spawnwerActive = true;
+        Debug.Log(spawnwerActive);
+
+        // check waveIndex less than 2 ////////////////////////// wave start position
+        if (waveIndex < 2)
+        {
+            // check waveIndexStartPosition does not equal 0
+            if (waveIndexStartPosition != 0)
+            {
+                // multiply the waveIndex by waveIndexStartPosition
+                waveIndex *= waveIndexStartPosition;
+            }            
+        }
+
         for (int i = 0; i < waveIndex; i++)
         {
+            
             // call spawn enemy method
             SpawnEnemy();
             // wait set time before continuing
             yield return new WaitForSeconds(0.5f);
+            if((i + 1) >= waveIndex)
+            {
+                spawnwerActive = false;
+                Debug.Log(spawnwerActive);
+            }
         }
     }
 

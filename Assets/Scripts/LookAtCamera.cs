@@ -7,6 +7,7 @@ public class LookAtCamera : MonoBehaviour
     void Start()
     {
         // set main camera as target
+        //mainCamera = Camera.main.transform;
         mainCamera = Camera.main.transform;
     }
 

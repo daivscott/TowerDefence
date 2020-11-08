@@ -23,6 +23,8 @@ public class EnemyScript : MonoBehaviour
 
     //public Text enemyDebug;
 
+    private float getCurrentHealth;
+
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -47,6 +49,16 @@ public class EnemyScript : MonoBehaviour
             GetNextWaypoint();
         }
         //enemyDebug.text = waypointIndex.ToString();
+        getCurrentHealth = gameObject.GetComponent<HealthScript>().currentHealth;///////////////////// dodgy
+
+        if (getCurrentHealth < 0f)
+        {
+            //Debug.Log("Enemy Died");
+            gameObject.SetActive(false);
+            WaveSpawner2.enemiesAlive--;
+            PlayerStats.enemyDeaths++;
+        }
+        //Debug.Log(getCurrentHealth);
     }
 
     void GetNextWaypoint()

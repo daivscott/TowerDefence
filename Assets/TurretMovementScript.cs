@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretMovementScript : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class TurretMovementScript : MonoBehaviour
 
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
-        if (Input.GetKey(KeyCode.Space) && currentCount < 0)
+        if (Input.GetMouseButton(0) && currentCount < 0)
         {
             Instantiate(projectile, firePoint.transform.position, firePoint.transform.rotation);
             currentCount = cooldown;

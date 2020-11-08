@@ -14,7 +14,7 @@ public class GUIScript : MonoBehaviour
     void Update()
     {
         enemiesSentText.text = WaveSpawner2.enemiesSent.ToString();
-        enemyDeathsText.text = Bullet.enemyDeaths.ToString();
+        enemyDeathsText.text = PlayerStats.enemyDeaths.ToString();
         enemyBreachesText.text = EnemyScript.enemyBreaches.ToString();
         waveText.text = WaveSpawner2.waveIndex.ToString();
     }
